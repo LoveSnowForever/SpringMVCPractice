@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mvc.mapping.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.mvc.model.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="house_id" property="houseId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, tel, email, date, house_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.mvc.model.Customer" >
+    insert into customer (id, name, tel, 
+      email, date, house_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{houseId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.mvc.model.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.mvc.model.Customer" >
+    update customer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.mvc.model.Customer" >
+    update customer
+    set name = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      house_id = #{houseId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from customer
+  </select>
+</mapper>

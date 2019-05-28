@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://www.mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <!-- <classPathEntry location="D:\software\lib\mysql-connector-java-5.1.21.jar" /> -->
+    <classPathEntry location="C:\Users\洪buff\Desktop\mysql-connector-java-8.0.11\mysql-connector-java-8.0.11" />
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/automation" userId="root" password="123456">
+            <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="cn.com.mvc.model" targetProject="C:\Users\洪buff\Desktop\mybatis-bag">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 -->
+        <sqlMapGenerator targetPackage="cn.com.mvc.mapping" targetProject="C:\Users\洪buff\Desktop\mybatis-bag">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.mvc.dao" targetProject="C:\Users\洪buff\Desktop\mybatis-bag">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+        <table tableName="customer" domainObjectName="Customer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" />
+
+    </context>
+</generatorConfiguration>
+
